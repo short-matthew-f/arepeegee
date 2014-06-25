@@ -1,0 +1,62 @@
+body, header, h1, div, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+}
+
+body {
+  background: #666;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+.group:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.map > ul {
+  list-style: none;
+  width: 578px;
+  height: 578px;
+  margin: 20px auto;
+  border: 1px solid black;
+}
+
+.map > ul > li {
+  width: 34px;
+  height: 34px;
+  float: left;
+}
+
+.map > ul > li.grass {
+  background-color: green;
+}
+
+.map > ul > li.mountain {
+  background-color: grey;
+}
+
+.map > ul > li.water {
+  background-color: blue;
+}
+
+.map > ul > li.sand {
+  background-color: gold;
+}
+
+.map li:hover {
+  width: 32px;
+  height: 32px;
+  border: 1px dashed white;
+}
+
+.map > ul > li.enemy { 
+  background: red;
+}
+
+.map > ul > li.hero {
+  background: blue;
+}
