@@ -1,4 +1,4 @@
-body, header, h1, div, ul, li {
+body, header, h1, div, ul, li, p {
   margin: 0;
   padding: 0;
   border: 0;
@@ -17,11 +17,66 @@ body {
   display: block;
 }
 
+.game {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.hud {
+  width: 188px;
+  height: 558px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid white;
+  background: blue;
+  float: left;
+}
+
+.hud > h1 {
+  font-size: 20px;
+  color: gold;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.hud > section {
+  width: 168px;
+  margin-bottom: 50px;
+}
+
+.hud ul {
+  list-style: none;
+  width: 188px;
+  margin-bottom: 10px;
+  margin: auto;
+}
+
+.hero-hud li h1 {
+  color: white;
+}
+
+.hero-hud li p {
+  color: grey;
+  text-align: right;
+}
+
+.enemy-hud li h1 {
+  color: red;
+}
+
+.enemy-hud li p {
+  color: pink;
+  text-align: right;
+}
+
+.map {
+  float: left;
+}
+
 .map > ul {
   list-style: none;
   width: 578px;
   height: 578px;
-  margin: 20px auto;
   border: 1px solid black;
 }
 
@@ -45,12 +100,6 @@ body {
 
 .map > ul > li.sand {
   background-color: gold;
-}
-
-.map li:hover {
-  width: 32px;
-  height: 32px;
-  border: 1px dashed white;
 }
 
 .map > ul > li.enemy { 

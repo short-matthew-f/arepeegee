@@ -160,8 +160,10 @@
 
     this.addHero();
 
+    this.currentEnemyLevel = 1;
+
     for(var i = 0; i < 10; i++) {
-      this.addEnemy();
+      this.addEnemy(this.currentEnemyLevel);
     };
 
     this.$map = this.render();
@@ -175,6 +177,9 @@
   _(UI.prototype).extend({
     render: function () {
       var map = this.map;
+
+      var hero = map.hero;
+
       var $map = $('.map');
 
       var $ul = $('<ul class="group">');
@@ -184,20 +189,20 @@
           var thisTile = map.grid[i][j];
 
           var terrainCSS = thisTile.terrain;
-          var actorCSS = (thisTile.actor === null) ? "" : thisTile.actor.render();
-          var actorText = (thisTile.actor === null) ? "" : thisTile.actor.health;
+          var actorCSS = (thisTile.actor === null) ? "" : thisTile.actor.actorType();
 
           var $li = $('<li>').attr('data-row', i)
                              .attr('data-col', j)
                              .addClass(terrainCSS)
-                             .addClass(actorCSS)
-                             .text(actorText);
+                             .addClass(actorCSS);
 
           $ul.append($li);
         }
       };
 
       $map.html($ul);  
+
+      hero.render();
 
       return $map; 
     }, 
@@ -237,17 +242,30 @@
         if(enemy.isAlive()) {
           enemy.attack(hero);
         } else {
+          hero.xp += enemy.killXP;
+
+          hero.levelUp();
+
           map.removeEnemy(enemy);
         };
+
+        if(map.enemies.length === 0) {
+          this.currentEnemyLevel += 1;
+
+          for(var i = 0; i < 10; i++) {
+            this.addEnemy(this.currentEnemyLevel);
+          };
+        }
       };
     },
 
-    addEnemy: function () {
+    addEnemy: function (level) {
       var enemy = new ArePeeGee.Enemy({
         position: this.map.unoccupiedPosition(),
-        health: 4,
-        strength: 1,
-        defense: 2
+        health: 3 * level,
+        strength: 2 + level,
+        defense: 1 + level,
+        killXP: -1 + 2 * level
       });
 
       this.map.addEnemy(enemy);
